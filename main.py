@@ -4,6 +4,8 @@ from copy import deepcopy
 
 
 def is_perfect_square(i: int):
+    if i < 0:
+        return False
     lh = 1
     rh = i
     while(lh <= rh):
@@ -22,6 +24,7 @@ def test_is_perfect_square():
     assert is_perfect_square(1) is True
     assert is_perfect_square(4) is True
     assert is_perfect_square(11) is False
+    assert is_perfect_square(-1) is False
     assert is_perfect_square(121) is True
     assert is_perfect_square(144) is True
     print('Everything passed')
