@@ -1,6 +1,47 @@
 from copy import deepcopy
 
 # problema 1, 20
+# adaugator problema 3
+
+
+def get_longest_alternating_signs(lst: list[int]) -> list[int]:
+    """
+    Returneaza cea mai lunga secventa din lst in care numerele
+    au semne alternate
+    param:
+        lst - lista
+    return:
+        res_lst - secventa cea mai lunga
+    """
+    if not len(lst):
+        return []
+    sign = lst[0] >= 0
+    # True if previous element was pozitive
+    res_lst = [lst[0]]
+    act_lst = [lst[0]]
+    for i in range(1, len(lst)):
+        act_sign = lst[i] >= 0
+        # True if i-th element is pozitive
+        if sign ^ act_sign:
+            act_lst.append(lst[i])
+        else:
+            if len(act_lst) > len(res_lst):
+                res_lst = act_lst[:]
+            act_lst = [lst[i]]
+        sign = act_sign
+    if len(act_lst) > len(res_lst):
+        res_lst = act_lst[:]
+    return res_lst
+
+
+def test_get_longest_alternating_signs():
+    print("Test get_longest_alternatig_signs")
+    assert get_longest_alternating_signs([1, 2, 3, -1, 2, 0]) == [3, -1, 2]
+    assert get_longest_alternating_signs([]) == []
+    assert get_longest_alternating_signs([0, 0, 0, 0]) == [0]
+    assert get_longest_alternating_signs([-1, 0, -2, 10, -4])\
+        == [-1, 0, -2, 10, -4]
+    print("Everything passed")
 
 
 def is_perfect_square(i: int):
@@ -151,11 +192,13 @@ def main():
     test_is_perfect_square()
     test_get_longest_all_perfect_squares()
     test_get_longest_concat_is_prime()
+    test_get_longest_alternating_signs()
     while True:
         print("1. Citire date.")
         print("2. Determinare cea mai lungă subsecvență cu proprietatea 1.")
         print("3. Determinare cea mai lungă subsecvență cu proprietatea 2.")
-        print("4. Ieșire.")
+        print("4. Determinare cea mai lunga subsecventa cu proprietatea 3.")
+        print("5. Ieșire.")
         option = input("Optiunea: ")
         if option == "1":
             data = readData()
@@ -164,6 +207,8 @@ def main():
         elif option == "3":
             print(get_longest_concat_is_prime(data))
         elif option == "4":
+            print(get_longest_alternating_signs(data))
+        elif option == "5":
             break
 
 
