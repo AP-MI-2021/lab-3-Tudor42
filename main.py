@@ -4,6 +4,14 @@ from copy import deepcopy
 
 
 def is_perfect_square(i: int):
+    """
+    Verifica daca un numar este patrat perfect
+    param:
+        i - numarul verificat
+    return:
+        True - daca numarul este patrat perfect
+        False - daca numarul nu este patrat perfect
+    """
     if i < 0:
         return False
     lh = 1
@@ -31,6 +39,15 @@ def test_is_perfect_square():
 
 
 def get_longest_all_perfect_squares(lst: list[int]) -> list[int]:
+    """
+    Returneaza lista care contine cea mai lunga secventa de
+    patrate perfecte din lst
+    param:
+        lst - lista initiala
+    return:
+        Lista care contine cea mai lunga secventa
+        in care toate numerele sunt patrate perfecte
+    """
     longest_list, actual_list = [], []
     for i in lst:
         if is_perfect_square(i):
@@ -54,9 +71,10 @@ def test_get_longest_all_perfect_squares():
 
 def is_prime(n):
     """
-    input:
+    Verifica daca un numar n este prim
+    param:
         n - numarul verificat
-    output:
+    return:
         True  - n este prim
         False - n nu este prim
     """
@@ -74,9 +92,11 @@ def is_prime(n):
 
 def get_longest_concat_is_prime(lst: list[int]) -> list[int]:
     """
-    input:
+    Returneaza cea mai lunga secventa din lst, in care
+    concatenarea elementelor formeaza un numar prim
+    param:
         lst - lista de numere
-    output:
+    return:
         res_lst - cel mai lunga subsecventa in
             care concatenarea elementelor formeaza un numar prim
     """
@@ -111,6 +131,12 @@ def test_get_longest_concat_is_prime():
 
 
 def readData():
+    """
+    Citeste o lista de la tastatura
+    param:
+    return:
+        o lista cu elementele citite
+    """
     try:
         num = [int(i) for i in
                input('Lista de numere(numerele scrise prin spatiu): ').split()]
